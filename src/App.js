@@ -10,20 +10,21 @@ function App() {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await getData(baseURL);
-      await loadData(response.data[0]);
+      // let response = await getData(baseURL);
+      let response = await axios.get(baseURL);
+      await loadData(response.data.data[0]);
       setLoading(false);
     }
     fetchData();
   }, []);
 
-  async function getData(url) {
-    return new Promise((resolve, reject) => {
-      axios.get(url).then((res) => {
-        resolve(res.data);
-      });
-    });
-  }
+  // async function getData(url) {
+  //   return new Promise((resolve, reject) => {
+  //     axios.get(url).then((res) => {
+  //       resolve(res.data);
+  //     });
+  //   });
+  // }
 
   async function loadData(data) {
     setPokemon(data);
