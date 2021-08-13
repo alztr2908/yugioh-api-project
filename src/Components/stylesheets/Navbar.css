@@ -14,7 +14,7 @@
   background-color: #b2591a;
   color: white;
   border: none;
-  height: 2.35em;
+  height: 3.75em;
 }
 
 .list-background-button:hover {
@@ -22,11 +22,23 @@
   color: #000000;
 }
 
-.menuButton Button {
-  color: white;
+.list-search {
+  display: flex;
+  align-items: center;
 }
 
-img {
+/* To move the toggle button to the left*/
+.background div:last-child {
+  margin-left: auto;
+}
+
+#logo {
   width: 175px;
   height: 75px;
+}
+
+#searchLogo {
+  width: 30px;
+  height: 40px;
+  margin-right: 10px;
 }
