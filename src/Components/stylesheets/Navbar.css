@@ -1,0 +1,32 @@
+.background {
+  background-color: #b2591a;
+  display: flex;
+  align-items: center;
+  padding: 0 5em;
+}
+
+.list-background {
+  margin: 0 2em;
+}
+
+.list-background-button {
+  font-size: 1.25rem;
+  background-color: #b2591a;
+  color: white;
+  border: none;
+  height: 2.35em;
+}
+
+.list-background-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.menuButton Button {
+  color: white;
+}
+
+img {
+  width: 175px;
+  height: 75px;
+}
