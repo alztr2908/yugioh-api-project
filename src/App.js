@@ -1,7 +1,10 @@
 import Navbar from "./Components/Navbar";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./Screens/Home";
+import Directory from "./Screens/Directory";
+import Card from "./Screens/Card";
 
 const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
@@ -32,9 +35,14 @@ function App() {
   }
 
   return (
-    <div>
-      <Navbar></Navbar>
-    </div>
+    <Router>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/Directory" component={Directory} />
+        <Route path="/Card" component={Card} />
+      </Switch>
+    </Router>
   );
 }
 
