@@ -1,22 +1,18 @@
-import { useContext } from "react";
-import { useTheme, useToggle } from "../ThemeContext";
+import { useData } from "../ThemeContext";
 
 function Home() {
-  const darkTheme = useTheme();
-  const toggleTheme = useToggle();
-  function themeStyle(dark) {
-    return {
-      backgroundColor: dark ? "#333" : "#CCC",
-      color: dark ? "#CCC" : "#333",
-      padding: "2rem",
-      margin: "2rem",
-    };
-  }
-  return (
-    <div style={themeStyle(darkTheme)}>
-      <button onClick={toggleTheme}>Toggle Theme</button>
-      Class Theme
-    </div>
-  );
+    const { data } = useData();
+    console.log(data);
+
+    return (
+        <div>
+            <h1>asdsd</h1>
+            {data.map((mem) => (
+                <div key={mem.id}>
+                    <h1>{mem.first_name}</h1>
+                </div>
+            ))}
+        </div>
+    );
 }
 export default Home;

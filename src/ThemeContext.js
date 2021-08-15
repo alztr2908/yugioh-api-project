@@ -1,27 +1,30 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
-export const ThemeContext = createContext();
-export const ToggleTheme = createContext();
+const DataContext = createContext();
+const LoadContext = createContext();
 
-export const useTheme = () => {
-  return useContext(ThemeContext);
-};
-
-export const useToggle = () => {
-  return useContext(ToggleTheme);
+export const useData = () => {
+    const context = useContext(DataContext);
+    if (context === undefined) {
+        throw new Error("Context must be used within a Provider");
+    }
+    return context;
 };
 
 export function ThemeContextProvider({ children }) {
-  const [darkTheme, setDarkTheme] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState([]);
 
-  function toggleTheme() {
-    setDarkTheme((prevDarkTheme) => !prevDarkTheme);
-  }
-  return (
-    <ThemeContext.Provider value={darkTheme}>
-      <ToggleTheme.Provider value={toggleTheme}>
-        {children}
-      </ToggleTheme.Provider>
-    </ThemeContext.Provider>
-  );
+    useEffect(() => {
+        fetch("data.json")
+            .then((res) => res.json())
+            .then((mem) => {
+                setData(mem);
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    return (
+        <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>
+    );
 }

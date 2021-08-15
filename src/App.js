@@ -11,13 +11,13 @@ import Card from "./Screens/Card";
 const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
 function App() {
-  return (
-    <>
-      <ThemeContextProvider>
-        <Home />
-      </ThemeContextProvider>
-    </>
-  );
+    return (
+        <>
+            <ThemeContextProvider>
+                <Home />
+            </ThemeContextProvider>
+        </>
+    );
 }
 
 export default App;
