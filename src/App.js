@@ -1,10 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useContext, createContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {
-  ReferenceDataContext,
-  ReferenceDataContextProvider,
-} from "./ReferenceDataContext";
 
 import Navbar from "./Components/Navbar";
 import Home from "./Screens/Home";
@@ -13,13 +9,7 @@ import Card from "./Screens/Card";
 
 const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
-const [loading, setLoading] = useState(false);
-const ReferenceDoneLoading = createContext({ loading, setLoading });
-
 function App() {
-  const { card, setCard } = useContext(ReferenceDataContext);
-  const doneLoading = useContext(ReferenceDoneLoading);
-
   useEffect(() => {
     async function fetchData() {
       let response = await getData(baseURL);
@@ -46,13 +36,9 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
-        <ReferenceDataContextProvider>
-          <ReferenceDoneLoading.Provider value={doneLoading}>
-            <Route exact path="/" component={Home} />
-            <Route path="/Directory" component={Directory} />
-            <Route path="/Card" component={Card} />
-          </ReferenceDoneLoading.Provider>
-        </ReferenceDataContextProvider>
+        <Route exact path="/" component={Home} />
+        <Route path="/Directory" component={Directory} />
+        <Route path="/Card" component={Card} />
       </Switch>
     </Router>
   );
