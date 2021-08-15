@@ -9,38 +9,21 @@ import Card from "./Screens/Card";
 
 const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
+export const ThemeContext = createContext();
+
 function App() {
-  useEffect(() => {
-    async function fetchData() {
-      let response = await getData(baseURL);
-      let cardItems = response.data.slice(0, 5);
-      await loadData(cardItems);
-    }
-    fetchData();
-  }, []);
+  const [darkTheme, setDarkTheme] = useState(true);
 
-  async function getData(url) {
-    return new Promise((resolve, reject) => {
-      axios.get(url).then((res) => {
-        resolve(res.data);
-        // console.log(res.data.data.slice(0, 5));
-      });
-    });
+  function toggleTheme() {
+    setDarkTheme((prevDarkTheme) => !prevDarkTheme);
   }
-
-  async function loadData(data) {
-    console.log(data);
-  }
-
   return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/Directory" component={Directory} />
-        <Route path="/Card" component={Card} />
-      </Switch>
-    </Router>
+    <>
+      <ThemeContext.Provider value={darkTheme}>
+        <button onClick={toggleTheme}>Toggle Theme</button>
+        <Home />
+      </ThemeContext.Provider>
+    </>
   );
 }
 
