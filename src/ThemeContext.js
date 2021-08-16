@@ -1,4 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import { getAllData, getData } from "./services/deliverData";
+
+const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
 const DataContext = createContext();
 const LoadContext = createContext();
@@ -15,16 +18,23 @@ export function ThemeContextProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
 
+    // Fetching data asynchronously
     useEffect(() => {
-        fetch("data.json")
-            .then((res) => res.json())
-            .then((mem) => {
-                setData(mem);
-            })
-            .catch((err) => console.log(err));
+        async function fetchData() {
+            let response = await getAllData(baseURL);
+            await loadData(response.data);
+            setLoading(false);
+        }
+        fetchData();
     }, []);
 
+    const loadData = async (data) => {
+        setData(data.slice(0, 10));
+    };
+
     return (
-        <DataContext.Provider value={{ data }}>{children}</DataContext.Provider>
+        <DataContext.Provider value={{ data, loading }}>
+            {children}
+        </DataContext.Provider>
     );
 }

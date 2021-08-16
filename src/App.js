@@ -8,14 +8,19 @@ import Home from "./Screens/Home";
 import Directory from "./Screens/Directory";
 import Card from "./Screens/Card";
 
-const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
-
 function App() {
     return (
         <>
-            <ThemeContextProvider>
-                <Home />
-            </ThemeContextProvider>
+            <Router>
+                <Navbar></Navbar>
+                <Switch>
+                    <ThemeContextProvider>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/Directory" component={Directory} />
+                        <Route path="/Card" component={Card} />
+                    </ThemeContextProvider>
+                </Switch>
+            </Router>
         </>
     );
 }

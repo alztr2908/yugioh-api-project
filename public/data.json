@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "first_name": "Itch",
+        "last_name": "Dinnies"
+    },
+    {
+        "id": 2,
+        "first_name": "Mable",
+        "last_name": "Llewellyn"
+    },
+    {
+        "id": 3,
+        "first_name": "Dominga",
+        "last_name": "Gianulli"
+    },
+    {
+        "id": 4,
+        "first_name": "Costa",
+        "last_name": "Wickstead"
+    },
+    {
+        "id": 5,
+        "first_name": "Pincus",
+        "last_name": "Higbin"
+    }
+]
