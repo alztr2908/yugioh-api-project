@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState, useContext, createContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
