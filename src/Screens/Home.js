@@ -2,6 +2,7 @@ import { useData } from "../ThemeContext";
 
 function Home() {
     const { data, loading } = useData();
+    console.log(data);
 
     const loadData = data.map((mem) => (
         <div key={mem.id}>

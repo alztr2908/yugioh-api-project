@@ -22,7 +22,6 @@ export function ThemeContextProvider({ children }) {
     useEffect(() => {
         async function fetchData() {
             let response = await getAllData(baseURL);
-            console.log(response);
             await loadData(response.data);
             setLoading(false);
         }
