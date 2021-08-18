@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext, createContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import "./App.less";
 import { ThemeContextProvider } from "./ThemeContext";
 import Navbar from "./Components/Navbar";
 import Home from "./Screens/Home";
@@ -9,7 +9,7 @@ import Card from "./Screens/Card";
 
 function App() {
     return (
-        <>
+        <div>
             <Router>
                 <Navbar></Navbar>
                 <Switch>
@@ -20,7 +20,7 @@ function App() {
                     </ThemeContextProvider>
                 </Switch>
             </Router>
-        </>
+        </div>
     );
 }
 
