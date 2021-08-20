@@ -56,11 +56,31 @@ function Directory() {
     // Reset the state of number of cards shown
     function resetSliceData(num) {
         setPartialData(data.slice(0, num));
+        setViewNoCard({ initialValue: 0, finalValue: num });
         setNumItem(num);
     }
 
     // Slice data with forward/backward button
-    function forwardSliceData(num) {}
+    function forwardSliceData(num) {
+        setViewNoCard({
+            initialValue: viewNoCard.initialValue + num,
+            finalValue: viewNoCard.finalValue + num,
+        });
+        setPartialData(
+            data.slice(viewNoCard.initialValue, viewNoCard.finalValue)
+        );
+        return;
+    }
+    function backwardSliceData(num) {
+        setViewNoCard({
+            initialValue: viewNoCard.initialValue - num,
+            finalValue: viewNoCard.finalValue - num,
+        });
+        setPartialData(
+            data.slice(viewNoCard.initialValue, viewNoCard.finalValue)
+        );
+        return;
+    }
 
     // Props of CardDir determining List/Gallery View
 
@@ -115,10 +135,16 @@ function Directory() {
                         <Button className="movePageButton">
                             <FaFastBackward />
                         </Button>
-                        <Button className="movePageButton">
+                        <Button
+                            className="movePageButton"
+                            onClick={() => backwardSliceData(numItem)}
+                        >
                             <FaStepBackward />
                         </Button>
-                        <Button className="movePageButton">
+                        <Button
+                            className="movePageButton"
+                            onClick={() => forwardSliceData(numItem)}
+                        >
                             <FaStepForward />
                         </Button>
                         <Button className="movePageButton">
