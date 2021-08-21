@@ -1,6 +1,6 @@
 import CardDir from "../Components/CardDir";
 import { useData } from "../ThemeContext";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import "./stylesheets/Directory.less";
 import { Menu, Dropdown, Button, Divider, Space, Row, Col } from "antd";
 import { DownOutlined } from "@ant-design/icons";
@@ -11,20 +11,25 @@ import {
     FaFastBackward,
 } from "react-icons/fa";
 
-// Ini
+// Initial values
 const cardNumberSlice = { initialValue: 0, finalValue: 30 };
 
 function Directory() {
     const { data, loading } = useData();
-    const [partialData, setPartialData] = useState(data.slice(0, 30));
+    const [partialData, setPartialData] = useState([]);
     const [viewNoCard, setViewNoCard] = useState(cardNumberSlice);
+
+    useEffect(() => {
+        setPartialData(data.slice(0, 30));
+        console.log(data);
+    }, [data]);
 
     // Determining the viewing list
     const viewList = [
-        { name: "List", id: 1, mode: false },
-        { name: "Gallery", id: 2, mode: true },
+        { name: "List", id: 1, mode: true },
+        { name: "Gallery", id: 2, mode: false },
     ];
-    const [viewItem, setViewItem] = useState(viewList[1].name);
+    const [viewItem, setViewItem] = useState(viewList[0].name);
 
     const menuView = (
         <Menu>
@@ -62,23 +67,31 @@ function Directory() {
 
     // Slice data with forward/backward button
     function forwardSliceData(num) {
+        setPartialData(
+            data.slice(
+                viewNoCard.initialValue + num,
+                viewNoCard.finalValue + num
+            )
+        );
         setViewNoCard({
             initialValue: viewNoCard.initialValue + num,
             finalValue: viewNoCard.finalValue + num,
         });
-        setPartialData(
-            data.slice(viewNoCard.initialValue, viewNoCard.finalValue)
-        );
+
         return;
     }
     function backwardSliceData(num) {
+        setPartialData(
+            data.slice(
+                viewNoCard.initialValue - num,
+                viewNoCard.finalValue - num
+            )
+        );
         setViewNoCard({
             initialValue: viewNoCard.initialValue - num,
             finalValue: viewNoCard.finalValue - num,
         });
-        setPartialData(
-            data.slice(viewNoCard.initialValue, viewNoCard.finalValue)
-        );
+
         return;
     }
 
@@ -111,7 +124,7 @@ function Directory() {
         <div className="bodyDirectory">
             <Row gutter={[]} style={{ marginTop: "2em", marginBottom: "8em" }}>
                 <Divider />
-                <Col span={18}>
+                <Col span={19}>
                     <Space size={24}>
                         <Dropdown overlay={menuView}>
                             <Button className="buttonList">
@@ -131,7 +144,7 @@ function Directory() {
                     </Space>
                 </Col>
                 <Col span={5}>
-                    <Space size={16}>
+                    <Space size={8}>
                         <Button className="movePageButton">
                             <FaFastBackward />
                         </Button>

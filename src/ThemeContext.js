@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { getAllData, getData } from "./services/deliverData";
+import { getAllData } from "./services/deliverData";
 
 const baseURL = "https://db.ygoprodeck.com/api/v7/cardinfo.php";
 
