@@ -8,20 +8,21 @@ import Directory from "./Screens/Directory";
 import Card from "./Screens/Card";
 
 function App() {
-    return (
-        <div>
-            <Router>
-                <Navbar></Navbar>
-                <Switch>
-                    <ThemeContextProvider>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/Directory" component={Directory} />
-                        <Route path="/Card" component={Card} />
-                    </ThemeContextProvider>
-                </Switch>
-            </Router>
-        </div>
-    );
+  return (
+    <div>
+      <Router>
+        <Navbar></Navbar>
+        <h1>Hello</h1>
+        <Switch>
+          <ThemeContextProvider>
+            <Route exact path="/" component={Home} />
+            <Route path="/Directory" component={Directory} />
+            <Route path="/Card" component={Card} />
+          </ThemeContextProvider>
+        </Switch>
+      </Router>
+    </div>
+  );
 }
 
 export default App;
